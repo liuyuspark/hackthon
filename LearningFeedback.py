@@ -43,7 +43,7 @@ def read_csv(data_path):
             # chat作为case_content
             case_content = row['chat']
             # communication_statu/parental_feedback 作为human_label，并转换为整数
-            human_label = int(row['communication_statu']) if row['communication_statu'].isdigit() else 1
+            human_label = int(row['communication_statu']) if row['communication_statu'].isdigit() else -1
             raw_data.append([case_id, case_content, human_label])
     return raw_data
 
@@ -74,9 +74,9 @@ def process_entry(index, entry, working_prompt):
         message_content = completion.choices[0].message.content
         print(f"AI Model's response for csv[{case_id}]: {message_content}")
         matches = re.findall(r'[0-1]', message_content)
-        gpt_label = int(matches[-1]) if matches else 1
+        gpt_label = int(matches[-1]) if matches else -1
     else:
-        gpt_label = 1
+        gpt_label = -1
     entry.append(gpt_label)
     return entry
 
