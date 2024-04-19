@@ -5,7 +5,7 @@ from multiprocessing import Pool
 from openai import AzureOpenAI
 from sklearn.metrics import accuracy_score, recall_score, confusion_matrix
 
-# 假设您已经设置了环境变量或者在代码中直接提供了API密钥和端点
+# API密钥和端点
 nodes = [
     {
         "deployment_name": "TU-CRMAI-XGZM-EastUS2-GPT35-16k-1",
